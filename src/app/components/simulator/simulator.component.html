@@ -1,0 +1,152 @@
+<app-user-toolbar>
+  <div class="container">
+    <div class="content">
+      <h1 class="text-center">Registro:</h1>
+      <h2>{{ currentDate }}</h2>
+
+      <div class="form-group card">
+        <label for="nombre">Nombre del Cliente:</label>
+        <div>
+          <input id="nombre" type="text" [(ngModel)]="nombreRegistro" required>
+        </div>
+      </div>
+      
+      <div class="form-group card">
+        <label for="moneda">Moneda:</label>
+        <div>
+          <select id="moneda" [(ngModel)]="enDolares">
+            <option value="false">Soles</option>
+            <option value="true">Dólares</option>
+          </select>
+        </div>
+      </div>
+  
+      <div class="form-group card">
+        <label for="precioCompra">Precio de la compra:</label>
+        <div>
+          <input type="number" [(ngModel)]="precioCompra" (ngModelChange)="validarPreciocompra()" [class.invalid]="precioCompraInvalid">
+        </div>
+        <div *ngIf="precioCompraInvalid" class="error-message">Debe ser mayor a 2500 y menor de 10000</div>
+      </div>
+  
+      <div class="form-group card">
+        <label for="cuotaInicial">Cuota Inicial:</label>
+        <div>
+          <input id="cuotaInicial" type="number" min="1" [(ngModel)]="cuotaInicial" required (ngModelChange)="validarCuotaInicial()">
+        </div>
+        <div *ngIf="cuotaInicialInvalid" class="error-message">La cuota inicial debe ser mayor al 7.5% del precio de la compra</div>
+      </div>
+      
+      <div class="form-group card">
+        <label for="tasaEfectiva">Tasa efectiva(%):</label>
+        <div>
+          <input id="tasaEfectiva" type="number" min="6.9" max="13.9" step="0.01" [(ngModel)]="tasaEfectivaAnual" required (ngModelChange)="validarTasaEfectiva()">
+        </div>
+        <div *ngIf="tasaEfectivaInvalid" class="error-message">La tasa efectiva debe ser mayor o igual a 6.9 y menor o igual a 13.9</div>
+      </div>
+
+      <div class="form-group card">
+        <label for="SeguroDregravamen">Seguro Degravamen Mensual(%):</label>
+        <div>
+          <input id="SeguroDregravamen" type="number" [(ngModel)]="SeguroDregravamen" readonly>
+        </div>
+      </div>
+      
+      <div class="form-group card">
+        <label for="numeroCuotas">Número de cuotas (meses):</label>
+        <div>
+          <input id="numeroCuotas" type="number" min="1" [(ngModel)]="numeroCuotas" required (ngModelChange)="validarNumeroCuotas()">
+        </div>
+        <div *ngIf="numeroCuotasInvalid" class="error-message">Debe ser en un periodo de 1 años a 5 años</div>
+      </div>
+      
+      <div class="form-group card">
+        <label for="periodoGracia">Periodo de Gracia:</label>
+        <input id="periodoGraciaNumerico" type="number" min="0" [(ngModel)]="periodoGraciaNumerico" required>
+        <div class="checkbox-group">
+          <label for="periodoGraciaTotal">
+            <input id="periodoGraciaTotal" type="checkbox" [(ngModel)]="periodoGraciaTotal" name="periodoGracia" (ngModelChange)="togglePeriodoGracia('total')">
+            Total
+          </label>
+          <label for="periodoGraciaParcial">
+            <input id="periodoGraciaParcial" type="checkbox" [(ngModel)]="periodoGraciaParcial" name="periodoGracia" (ngModelChange)="togglePeriodoGracia('parcial')">
+            Parcial
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group card">
+        <h3>Mora</h3>
+        <label for="diasRetraso">Días de retraso:</label>
+        <div>
+          <input type="number" id="diasRetraso" [(ngModel)]="diasRetraso" name="diasRetraso">
+        </div>
+      </div>
+
+      <div class="form-group card">
+        <label for="tnaCompensatoria">TNA compensatoria (%):</label>
+        <div>
+          <input type="number" id="tnaCompensatoria" [(ngModel)]="tnaCompensatoria" name="tnaCompensatoria" value="31.8">
+        </div>
+      </div>
+
+      <div class="form-group card">
+        <label for="teaMora">TEA mora (%):</label>
+        <div>
+          <input type="number" id="teaMora" [(ngModel)]="teaMora" name="teaMora" value="106.6">
+        </div>
+      </div>
+          
+      <button class="btn btn-primary" (click)="Operacion()">Calcular</button>
+  
+      <table *ngIf="mostrarTabla" class="margin-top">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Fecha</th>
+            <th>Saldo Inicial</th>
+            <th>Interés</th>
+            <th>Cuota</th>
+            <th>Amortizacion</th>
+            <th>Degravamen</th>
+            <th>Saldo Final</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let saldo of saldoInicial; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ obtenerFecha(i) }}</td>
+            <td>{{ saldo }}</td>
+            <td>{{ interes[i] }}</td> 
+            <td>{{ cuotaArr[i] }}</td>
+            <td>{{ amortizacion[i] }}</td>
+            <td>{{ degravamen[i] }}</td>
+            <td>{{ saldoFinal[i] }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="resultadoMora" class="margin-top">
+        <h4>Resultado Mora</h4>
+        <table>
+          <thead style="background-color: #4caf50; color: white;">
+            <tr>
+              <th>Tipo de Interés</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Interés Compensatorio</td>
+              <td>{{ resultadoMora.interesCompensatorio | number:'1.2-2' }}</td>
+            </tr>
+            <tr>
+              <td>Interés Moratorio</td>
+              <td>{{ resultadoMora.interesMoratorio | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</app-user-toolbar>

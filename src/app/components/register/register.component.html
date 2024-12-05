@@ -1,0 +1,74 @@
+<head>
+  <!-- CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<section>
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-sm-6">
+        <div class="img-container">
+          <img src="../../../assets/img/login/register_bod.png" alt="Register image">
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <p class="text-center h1 fw-bold mb-3" style="color: white;">Bienvenido</p>
+        <div class="form-container">
+          
+          <form>
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: white; margin-top: 0;">Crea tu cuenta</h3>
+
+            <div class="mb-4">
+              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+              <mat-form-field appearance="outline" class="mat-form-field-width">
+                <mat-label style="color: #FFEAEA;"> Nombre </mat-label>
+                <input type="text" matInput [formControl]="name" placeholder="Name" required>
+                <mat-error *ngIf="name.invalid">{{ getErrorMessageName() }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mb-4">
+              <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+              <mat-form-field appearance="outline" class="mat-form-field-width">
+                <mat-label style="color: #FFEAEA;"> Correo electrónico </mat-label>
+                <input type="email" style="color: #FFEAEA;" matInput [formControl]="email" placeholder="Email" required>
+                <mat-error *ngIf="email.invalid">{{ getErrorMessageEmail() }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mb-4">
+              <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+              <mat-form-field appearance="outline" class="mat-form-field-width">
+                <mat-label style="color: #FFEAEA;"> Contraseña </mat-label>
+                <input type="password" style="color: #FFEAEA;" matInput [formControl]="password" placeholder="Password" required>
+                <mat-error *ngIf="password.invalid">{{ getErrorMessagePassword() }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mb-4">
+              <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+              <mat-form-field appearance="outline" class="mat-form-field-width">
+                <mat-label style="color: #FFEAEA;"> Repetir contraseña </mat-label>
+                <input type="password" style="color: #FFEAEA;" matInput [formControl]="repassword" placeholder="Repeat password" required>
+                <mat-error *ngIf="repassword.invalid || repassword.value !== password.value">{{ getErrorMessageRePassword() }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-check d-flex flex-column align-items-center mb-4">
+              <mat-checkbox style="border-color: white;" [formControl]="terms" (click)="resetTermsError()">
+                <span style="color: white;">Estoy de acuerdo con mis datos</span>
+              </mat-checkbox>
+              <div class="text-danger small" *ngIf="termsError">Comprueba tus datos</div>
+            </div>
+
+            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+              <button type="button" class="btn btn-lg" style="background-color: #466799;" (click)="submit()">Register</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 2rem; /* Espacio alrededor del formulario */
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Ajustamos los estilos para los elementos dentro del formulario */
+.form-container form > * {
+  margin-bottom: 10px; /* Añadimos un margen inferior entre los elementos del formulario */
+}
+
+.mat-form-field-width {
+  font-size: 14px;
+  width: 390px; /* Ancho del formulario */
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.img-container img {
+  height: auto;
+}
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(68, 113, 96, 1);
+}
+
+
+
+.custom-checkbox .mat-checkbox-layout {
+  position: relative;
+  padding-left: 24px;
+}
+
+.custom-checkbox .mat-checkbox-frame {
+  border-color: red;
+}
+
+.custom-checkbox .mat-checkbox-inner-container {
+  background-color: red;
+}
+
+.custom-checkbox .mat-checkbox-checked .mat-checkbox-inner-container {
+  background-color: blue;
+}
+
+.custom-checkbox .checkbox-text {
+  color: white;
+}

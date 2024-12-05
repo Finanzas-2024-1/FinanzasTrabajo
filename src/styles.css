@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+ 
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+.logo {
+    width: 180px; /* Ajusta el tamaño según tus necesidades */
+    height: 130px;
+    /* Agrega otros estilos necesarios */
+  }
+
+   .font1 {
+    font-family: 'Work Sans', sans-serif;
+  }
+  body {
+    background-color: rgba(68, 113, 96, 1);
+
+    /*background-color: rgba(29,31,56,255)*/;
+  }

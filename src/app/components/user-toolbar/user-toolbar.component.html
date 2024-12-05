@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="toolbar">
+    <img src="../../../assets/img/login/carrito.png" alt="Logo" class="logo">
+
+    <ul>
+      <li><a class="button-content" routerLink="/products" routerLinkActive="active">
+        <mat-icon> attach_money </mat-icon>
+        <span> Productos </span>
+      </a></li>
+
+      <li><a class="button-content" routerLink="/simulator" routerLinkActive="active">
+        <mat-icon> equalizer </mat-icon>
+        <span style="margin-left: 5px;"> Operaciones </span>
+      </a></li>
+
+      <li><a class="button-content" routerLink="/data" routerLinkActive="active">
+        <mat-icon> cloud </mat-icon>
+        <span style="margin-left: 5px;"> Historial </span>
+      </a></li>
+    </ul>
+
+    <ul>
+      <li><a class="button-content" routerLink="/profile" routerLinkActive="active">
+        <mat-icon> person </mat-icon>
+        <span style="margin-left: 5px;"> {{user_name}} </span>
+      </a></li>
+
+      <li><a class="button-content" (click)="logout()" routerLinkActive="active">
+        <mat-icon> exit_to_app </mat-icon>
+        <span style="margin-left: 5px;"> Cerrar sesion </span>
+      </a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <ng-content></ng-content>
+    <router-outlet></router-outlet>
+  </div>
+</div>

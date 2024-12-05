@@ -1,0 +1,92 @@
+<app-user-toolbar>
+  <table mat-table [dataSource]="dataSource" class="container mat-elevation-z8">
+
+    <!-- Columna Nombre -->
+    <ng-container matColumnDef="nombreRegistro">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.nombreRegistro }}</td>
+    </ng-container>
+
+    <!-- Columna Nº -->
+    <ng-container matColumnDef="numero">
+      <th mat-header-cell *matHeaderCellDef>Nº</th>
+      <td mat-cell *matCellDef="let elemento; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+  
+    <!-- Columna Moneda -->
+    <ng-container matColumnDef="moneda">
+      <th mat-header-cell *matHeaderCellDef>Moneda</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.moneda }}</td>
+    </ng-container>
+  
+    <!-- Columna Precio de vivienda -->
+    <ng-container matColumnDef="precioCompra">
+      <th mat-header-cell *matHeaderCellDef>Precio de la compra</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.precioCompra }}</td>
+    </ng-container>
+  
+    <!-- Columna Cuota inicial -->
+    <ng-container matColumnDef="cuotaInicial">
+      <th mat-header-cell *matHeaderCellDef>Cuota inicial</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.cuotaInicial }}</td>
+    </ng-container>
+  
+    <!-- Columna Tasa Efectiva -->
+    <ng-container matColumnDef="tasaEfectiva">
+      <th mat-header-cell *matHeaderCellDef>Tasa Efectiva Anual</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.tasaEfectiva }}</td>
+    </ng-container>
+  
+    <!-- Columna Número de cuotas -->
+    <ng-container matColumnDef="numeroCuotas">
+      <th mat-header-cell *matHeaderCellDef>Número de cuotas</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.numeroCuotas }}</td>
+    </ng-container>
+  
+    <!-- Columna Periodo de gracia total -->
+    <ng-container matColumnDef="periodoGraciaTotal">
+      <th mat-header-cell *matHeaderCellDef>Gracia total</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.periodoGraciaTotal }}</td>
+    </ng-container>
+  
+    <!-- Columna Periodo de gracia parcial -->
+    <ng-container matColumnDef="periodoGraciaParcial">
+      <th mat-header-cell *matHeaderCellDef>Gracia parcial</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.periodoGraciaParcial }}</td>
+    </ng-container>
+  
+    <!-- Columna Cuota -->
+    <ng-container matColumnDef="cuota">
+      <th mat-header-cell *matHeaderCellDef>Cuota</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.cuota }}</td>
+    </ng-container>
+  
+    <!-- Columna Días de retraso -->
+    <ng-container matColumnDef="diasRetraso">
+      <th mat-header-cell *matHeaderCellDef>Días de retraso</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.diasRetraso }}</td>
+    </ng-container>
+
+    <!-- Columna Interés Compensatorio -->
+    <ng-container matColumnDef="interesCompensatorio">
+      <th mat-header-cell *matHeaderCellDef>Interés Compensatorio</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.interesCompensatorio }}</td>
+    </ng-container>
+
+    <!-- Columna Interés Moratorio -->
+    <ng-container matColumnDef="interesMoratorio">
+      <th mat-header-cell *matHeaderCellDef>Interés Moratorio</th>
+      <td mat-cell *matCellDef="let elemento">{{ elemento.interesMoratorio }}</td>
+    </ng-container>
+
+    <!-- Definición de las columnas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page">
+  </mat-paginator>
+</app-user-toolbar>

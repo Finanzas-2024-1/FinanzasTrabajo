@@ -1,0 +1,34 @@
+/* login.css */
+
+.mat-form-field-width {
+  font-size: 14px;
+  width: 390px;
+}
+
+.col-sm-6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 2rem; /* Espacio alrededor de la imagen */
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.img-container img {
+  height: auto; 
+}
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(68, 113, 96, 1);
+  /* background-color: rgba(20, 21, 39, 255); */
+}
